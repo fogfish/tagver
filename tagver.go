@@ -56,3 +56,11 @@ func NewVersions(v string) Versions {
 
 	return vsn
 }
+
+func (vsn Versions) Get(key, def string) Version {
+	if v, has := vsn[key]; has {
+		return v
+	}
+
+	return Version(def)
+}

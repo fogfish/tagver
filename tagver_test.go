@@ -80,3 +80,19 @@ func TestVersions(t *testing.T) {
 		}
 	}
 }
+
+func TestVersionsGet(t *testing.T) {
+	vsn := tagver.NewVersions("api:pr1;db:v1")
+
+	if vsn.Get("api", "main") != "pr1" {
+		t.Errorf("invalid api key value")
+	}
+
+	if vsn.Get("db", "main") != "v1" {
+		t.Errorf("invalid db key value")
+	}
+
+	if vsn.Get("mw", "main") != "main" {
+		t.Errorf("invalid mw key value")
+	}
+}
