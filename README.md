@@ -52,7 +52,7 @@ main ───────┴── main ───────┴── ...
       prX             prX
 ```
 
-12. Software MAY establish dependencies between stacks (e.g. api layer depends on the database). Software MUST prepend TagVer with a name of layer following `:` and use `;` to concatenate versions (e.g. `api:pr1;db:main`, `api:v1;db:v1`)
+12. Software MAY establish dependencies between stacks (e.g. api layer depends on the database). Software MUST prepend TagVer with a name of layer following `-` and use `;` to concatenate versions (e.g. `api-pr1;db-main`, `api-v1;db-v1`)
 
 
 ## License

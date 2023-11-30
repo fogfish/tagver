@@ -48,7 +48,7 @@ func NewVersions(v string) Versions {
 	vsn := Versions{}
 
 	for _, stack := range strings.Split(v, ";") {
-		seq := strings.Split(stack, ":")
+		seq := strings.Split(stack, "-")
 		if len(seq) == 2 {
 			vsn[seq[0]] = Version(seq[1])
 		}

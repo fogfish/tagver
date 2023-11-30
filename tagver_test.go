@@ -59,30 +59,30 @@ func TestIsMain(t *testing.T) {
 func TestVersions(t *testing.T) {
 	for input, expected := range map[string]tagver.Versions{
 		"api":            {},
-		"api:v1":         {"api": "v1"},
-		"api:v1;":        {"api": "v1"},
-		"api:v1;db:main": {"api": "v1", "db": "main"},
-		"api:v1db:main":  {},
-		"api;db:main":    {"db": "main"},
+		"api-v1":         {"api": "v1"},
+		"api-v1;":        {"api": "v1"},
+		"api-v1;db-main": {"api": "v1", "db": "main"},
+		"api-v1db-main":  {},
+		"api;db-main":    {"db": "main"},
 		"api;db;":        {},
 	} {
 		vsn := tagver.NewVersions(input)
 		for k, v := range vsn {
 			if s, has := expected[k]; !has || s != v {
-				t.Errorf("failed to parse %v, %v expected", input, k)
+				t.Errorf("failed to parse %v, %v expected (%s)", input, k, v)
 			}
 		}
 
 		for k, v := range expected {
 			if s, has := vsn[k]; !has || s != v {
-				t.Errorf("failed to parse %v, %v expected", input, k)
+				t.Errorf("failed to parse %v, %v expected (%s)", input, k, v)
 			}
 		}
 	}
 }
 
 func TestVersionsGet(t *testing.T) {
-	vsn := tagver.NewVersions("api:pr1;db:v1")
+	vsn := tagver.NewVersions("api-pr1;db-v1")
 
 	if vsn.Get("api", "main") != "pr1" {
 		t.Errorf("invalid api key value")
