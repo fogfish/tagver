@@ -44,11 +44,14 @@ func (vsn Version) Tag(name string) string {
 // Versions are established as key-value mapping
 type Versions map[string]Version
 
+const divider_vsn = "@"
+const divider_dep = ":"
+
 func NewVersions(v string) Versions {
 	vsn := Versions{}
 
-	for _, stack := range strings.Split(v, ":") {
-		seq := strings.Split(stack, "-")
+	for _, stack := range strings.Split(v, divider_dep) {
+		seq := strings.Split(stack, divider_vsn)
 		if len(seq) == 2 {
 			vsn[seq[0]] = Version(seq[1])
 		}
